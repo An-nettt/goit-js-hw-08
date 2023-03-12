@@ -26,12 +26,8 @@ function onInputForm(event) {
 const savedItems = localStorage.getItem("feedback-form-state");
 if (savedItems) {
   savesItems = JSON.parse(savedItems);
-  console.log(form.email);
-  console.log(form.email.value);
-  console.log(savesItems);
-  console.log(inputEmail);
-  // form.email.value = savesItems.email;
-  // form.message.value = savesItems.message;
+  form.email.value = savesItems.email;
+  form.message.value = savesItems.message;
 }
 function onFormSubmit(event) {
   event.preventDefault();
@@ -39,5 +35,4 @@ function onFormSubmit(event) {
   localStorage.removeItem("feedback-form-state");
 
   console.log({ email: savesItems.email, message: savesItems.message });
-  //   console.log("email: ${savesItems.email}, message: ${savesItems.message}");
 }
