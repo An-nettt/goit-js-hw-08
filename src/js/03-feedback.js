@@ -42,7 +42,7 @@ function onOutput() {
   if (savedItems) {
     console.log(savedItems);
     const savesItems = JSON.parse(savedItems);
-    console.log(savesItems.email);
+    console.log("email:", savesItems.email);
 
     // console.log(savesItems.email);
 
