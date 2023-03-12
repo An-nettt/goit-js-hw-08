@@ -1,49 +1,43 @@
-// import throttle from "lodash.throttle";
+import throttle from "lodash.throttle";
 
-// const refs = {
-//   form: document.querySelector(".feedback-form"),
-// };
+const form = document.querySelector(".feedback-form");
 
+form.addEventListener("input", onInputForm);
 // refs.form.addEventListener("input", throttle(onInputForm, 500));
-// refs.form.addEventListener("submit", onFormSubmit);
+// refs.mess.addEventListener("input", throttle(onTextareaForm, 500));
+form.addEventListener("submit", onFormSubmit);
 
-// const savedItems = {};
-// onOutput();
+let savesItems = {};
 
-// function onInputForm(event) {
-//   const {
-//     elements: { email, message },
-//   } = event.target;
+function onInputForm(event) {
+  const {
+    elements: { email, message },
+  } = event.currentTarget;
 
-//   console.log(event.target);
+  let inputEmail = email.value;
+  let inputMess = message.value;
 
-//   localStorage.setItem(
-//     "feedback-form-state",
-//     JSON.stringify({ email: email.value, message: message.value })
-//   );
-// }
+  localStorage.setItem(
+    "feedback-form-state",
+    JSON.stringify({ email: inputEmail, message: inputMess })
+  );
+}
 
-// function onFormSubmit(event) {
-//   event.preventDefault();
-//   event.target.reset();
-//   localStorage.removeItem("feedback-form-state");
+const savedItems = localStorage.getItem("feedback-form-state");
+if (savedItems) {
+  savesItems = JSON.parse(savedItems);
+  console.log(form.email);
+  console.log(form.email.value);
+  console.log(savesItems);
+  console.log(inputEmail);
+  // form.email.value = savesItems.email;
+  // form.message.value = savesItems.message;
+}
+function onFormSubmit(event) {
+  event.preventDefault();
+  event.target.reset();
+  localStorage.removeItem("feedback-form-state");
 
-//   console.log(savedItems);
-
-//   // console.log('email' email.value);
-//   // console.log('message' message.value);
-// }
-
-// function onOutput() {
-//   savedItems = localStorage.getItem("feedback-form-state");
-
-//   if (savedItems) {
-//     console.log(savedItems);
-//     const savesItems = JSON.parse(savedItems);
-//     console.log("email:", savesItems.email);
-
-//     // console.log(savesItems.email);
-//   }
-// }
-
-console.log(1253);
+  console.log({ email: savesItems.email, message: savesItems.message });
+  //   console.log("email: ${savesItems.email}, message: ${savesItems.message}");
+}
