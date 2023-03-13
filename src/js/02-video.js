@@ -13,5 +13,5 @@ player.on(
   }, 1000)
 );
 
-const savedTimes = localStorage.getItem(CURRENT_TIME || 0);
+const savedTimes = localStorage.getItem(CURRENT_TIME) || 0;
 player.setCurrentTime(savedTimes);
